@@ -44,7 +44,7 @@ let tick t =
   t.state <- new_state;
   View.render !(t.view) t.state
 
-let rec start t speed =
+let rec start t ~speed =
   try
     while true do
       tick t;
@@ -61,5 +61,5 @@ let rec start t speed =
       | `Quit -> ()
       | `Restart ->
           t.state <- State.create ();
-          start t speed
+          start t ~speed
       | _ -> assert false)
