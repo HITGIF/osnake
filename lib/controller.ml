@@ -1,5 +1,5 @@
 type t = unit
-type message = [ `Left | `Right | `Up | `Down | `Quit | `Restart ]
+type message = [ State.Direction.t | `Quit | `Restart ]
 
 let char_code_to_message c =
   match c with
