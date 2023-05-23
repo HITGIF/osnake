@@ -9,8 +9,13 @@ homepage: "https://github.com/hitgif/osnake"
 doc: "https://url/to/documentation"
 bug-reports: "https://github.com/hitgif/osnake/issues"
 depends: [
+  "base"
+  "core"
+  "core_unix"
   "ocaml"
   "dune" {>= "3.7"}
+  "stdio"
+  "graphics"
   "odoc" {with-doc}
 ]
 build: [

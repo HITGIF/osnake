@@ -18,7 +18,7 @@
 (package
  (name osnake)
  (synopsis "Snake game in OCaml")
- (depends ocaml dune)
+ (depends base core core_unix ocaml dune stdio graphics)
  (tags
   (snake ocaml)))
 

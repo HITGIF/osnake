@@ -1,4 +1,4 @@
 type t
 
 val create : unit -> t
-val render : t -> unit
+val render : t -> Common.state -> unit
