@@ -4,4 +4,4 @@ let () =
   let view = View.create () in
   let controller = Controller.create () in
   let game = Game.create controller view in
-  Game.start game
+  Game.start game 15.
