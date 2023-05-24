@@ -1,7 +1,5 @@
 open Base
 
-type player = Human | AI
-
 module Direction = struct
   type t = [ `Left | `Right | `Up | `Down ] [@@deriving equal]
 
@@ -38,7 +36,7 @@ type t = {
   score : int;
   width : int;
   height : int;
-  player : player;
+  player : Player.t;
 }
 
 let equal2 (x, y) (x', y') = x = x' && y = y'

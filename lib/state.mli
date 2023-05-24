@@ -1,5 +1,3 @@
-type player = Human | AI
-
 module Direction : sig
   type t = [ `Left | `Right | `Up | `Down ] [@@deriving equal]
 
@@ -20,9 +18,9 @@ type t = {
   score : int;
   width : int;
   height : int;
-  player : player;
+  player : Player.t;
 }
 
-val create : player -> t
+val create : Player.t -> t
 val transition : t -> t
 val is_valid : t -> bool

@@ -48,8 +48,15 @@ let render _ state =
   draw_rect base 400 400;
 
   Printf.sprintf "Score: %d" state.score |> draw_text (420, 390);
-  "[W A S D] move" |> draw_text (420, 360);
-  "[esc] quit" |> draw_text (420, 330);
+
+  (match state.player with
+  | Human ->
+      "Player: Human" |> draw_text (420, 360);
+      "[W A S D] move" |> draw_text (420, 330);
+      "[esc] quit" |> draw_text (420, 300)
+  | AI ->
+      "Player: AI" |> draw_text (420, 360);
+      "[esc] quit" |> draw_text (420, 330));
 
   (* snake *)
   let Snake.{ head; tail } = state.snake in

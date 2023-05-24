@@ -22,14 +22,22 @@ let handle_controller_command t =
         match message with
         | `Quit -> Caml.raise_notrace Quit
         | #Direction.t as direction
-          when not Direction.(opposite t.state.direction |> equal direction) ->
+          when Player.is_human t.state.player
+               && not Direction.(opposite t.state.direction |> equal direction)
+          ->
             t.state <- { t.state with direction }
         | _ -> loop ())
   in
   loop ()
 
+let choose_direction _ = `Up
+
 let tick t =
   handle_controller_command t;
+
+  if Player.is_AI t.state.player then
+    t.state <- { t.state with direction = choose_direction t.state }
+  else ();
 
   let new_state = State.transition t.state in
   if not (State.is_valid new_state) then Caml.raise_notrace Game_over;
