@@ -38,8 +38,7 @@ let create () =
   Graphics.set_color Graphics.white;
   draw_rect base 400 400
 
-let render _ state =
-  let open State in
+let render _ state player =
   (* clear board *)
   Graphics.set_color Graphics.black;
   fill_rect base 400 400;
@@ -47,16 +46,16 @@ let render _ state =
   Graphics.set_color Graphics.white;
   draw_rect base 400 400;
 
-  Printf.sprintf "Score: %d" state.score |> draw_text (420, 390);
+  let open State in
+  let open Printf in
+  sprintf "Score: %d" state.score |> draw_text (420, 390);
 
-  (match state.player with
-  | Human ->
-      "Player: Human" |> draw_text (420, 360);
-      "[W A S D] move" |> draw_text (420, 330);
-      "[esc] quit" |> draw_text (420, 300)
-  | AI ->
-      "Player: AI" |> draw_text (420, 360);
-      "[esc] quit" |> draw_text (420, 330));
+  (match player with
+  | Player.Human -> "[W A S D] move"
+  | AI { name; _ } -> sprintf "AI: %s" name)
+  |> draw_text (420, 360);
+
+  "[esc] quit" |> draw_text (420, 330);
 
   (* snake *)
   let Snake.{ head; tail } = state.snake in

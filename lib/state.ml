@@ -36,7 +36,6 @@ type t = {
   score : int;
   width : int;
   height : int;
-  player : Player.t;
 }
 
 let equal2 (x, y) (x', y') = x = x' && y = y'
@@ -46,7 +45,7 @@ let rec gen_food width height ~valid =
   | x, y when valid (x, y) -> (x, y)
   | _ -> gen_food width height ~valid
 
-let create player =
+let create () =
   {
     snake = Snake.create (0, 0);
     direction = `Right;
@@ -54,7 +53,6 @@ let create player =
     score = 0;
     width = 40;
     height = 40;
-    player;
   }
 
 let transition t =

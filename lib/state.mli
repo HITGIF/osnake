@@ -18,9 +18,8 @@ type t = {
   score : int;
   width : int;
   height : int;
-  player : Player.t;
 }
 
-val create : Player.t -> t
+val create : unit -> t
 val transition : t -> t
 val is_valid : t -> bool
