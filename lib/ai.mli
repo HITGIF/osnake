@@ -3,4 +3,4 @@ type t = {
   strategy: State.t -> State.Direction.t
 }
 
-val basic : t
+val dumb : t
