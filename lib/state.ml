@@ -1,5 +1,7 @@
 open Base
 
+type player = Human | AI
+
 module Direction = struct
   type t = [ `Left | `Right | `Up | `Down ] [@@deriving equal]
 
@@ -36,6 +38,7 @@ type t = {
   score : int;
   width : int;
   height : int;
+  player : player;
 }
 
 let equal2 (x, y) (x', y') = x = x' && y = y'
@@ -45,7 +48,7 @@ let rec gen_food width height ~valid =
   | x, y when valid (x, y) -> (x, y)
   | _ -> gen_food width height ~valid
 
-let create () =
+let create player =
   {
     snake = Snake.create (0, 0);
     direction = `Right;
@@ -53,6 +56,7 @@ let create () =
     score = 0;
     width = 40;
     height = 40;
+    player;
   }
 
 let transition t =

@@ -13,15 +13,12 @@ let char_code_to_message c =
 
 let create () = ()
 
-let rec get_key_message () =
+let rec poll t =
   if Graphics.key_pressed () then
     Graphics.read_key () |> Char.code |> char_code_to_message |> function
     | Some _ as message -> message
-    | None -> get_key_message ()
+    | None -> poll t
   else None
-
-let rec poll t =
-  match get_key_message () with Some m -> m :: poll t | None -> []
 
 let rec wait_for t f =
   Graphics.read_key () |> Char.code |> char_code_to_message |> function
